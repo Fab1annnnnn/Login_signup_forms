@@ -28,7 +28,6 @@ public class signup_form extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
 
-        // Referencias a vistas
         etFullName        = findViewById(R.id.etFullName);
         etUsername        = findViewById(R.id.etUsername);
         etEmail           = findViewById(R.id.etEmail);
@@ -42,7 +41,6 @@ public class signup_form extends AppCompatActivity {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // DatePickerDialog al tocar el campo de fecha
         etFecha.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
             new DatePickerDialog(this,
@@ -81,7 +79,6 @@ public class signup_form extends AppCompatActivity {
         String pass2   = etConfirmPassword.getText().toString().trim();
         String fecha   = etFecha.getText().toString().trim();
 
-        // Campos vacíos
         if (name.isEmpty() || user.isEmpty() || email.isEmpty()
                 || address.isEmpty() || pass.isEmpty() || fecha.isEmpty()) {
             Toast.makeText(this,
@@ -89,38 +86,33 @@ public class signup_form extends AppCompatActivity {
             return;
         }
 
-        // Passwords coinciden
         if (!pass.equals(pass2)) {
             Toast.makeText(this,
                     "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Rol seleccionado
         if (spinnerRol.getSelectedItemPosition() == 0) {
             Toast.makeText(this,
                     "Selecciona un rol.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Género seleccionado
         if (radioGroupGenero.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this,
                     "Selecciona un género.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Edad mínima 18 años
         if (!isOver18()) {
             Toast.makeText(this,
                     "Debes ser mayor de 18 años.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Todo válido — aquí iría el registro real
         Toast.makeText(this,
                 "Usuario registrado exitosamente!", Toast.LENGTH_SHORT).show();
-        finish(); // Regresa al Login
+        finish();
     }
 
     private void getLocation() {
@@ -132,7 +124,6 @@ public class signup_form extends AppCompatActivity {
             return;
         }
 
-        // Primero intenta getLastLocation
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(location -> {
                     if (location != null) {
@@ -140,7 +131,6 @@ public class signup_form extends AppCompatActivity {
                                 "Lat: " + location.getLatitude()
                                         + "   Lng: " + location.getLongitude());
                     } else {
-                        // Si es null, solicita ubicación activa
                         solicitarUbicacionActiva();
                     }
                 });

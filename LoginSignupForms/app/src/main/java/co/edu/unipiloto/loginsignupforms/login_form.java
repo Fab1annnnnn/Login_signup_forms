@@ -31,11 +31,9 @@ public class login_form extends AppCompatActivity {
                     "Completa usuario y contraseña.", Toast.LENGTH_SHORT).show();
             return;
         }
-        // Aquí iría la validación real contra base de datos / API
         Toast.makeText(this, "Bienvenido!", Toast.LENGTH_SHORT).show();
     }
 
-    // Llamado por android:onClick="btn_signupForm" en el botón Registrarse
     public void btn_signupForm(View view) {
         startActivity(new Intent(getApplicationContext(), signup_form.class));
     }
