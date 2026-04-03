@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fuel Platform</string>
+    <string-array name="roles_array">
+        <item>Seleccione un rol</item>
+        <item>Comprador</item>
+        <item>Estación de servicio</item>
+        <item>Distribuidor</item>
+    </string-array>
+</resources>
